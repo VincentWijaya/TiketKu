@@ -88,6 +88,29 @@ class Controller {
     
   }
   
+  static showList(req, res) {
+    Studio.findAll({
+      include: [{ 
+        all: true, 
+        nested: true 
+      }]
+    })
+      .then(data => {
+        let hasil = []
+        
+        data.map(studio => {
+          if(studio.movieId) {
+            hasil.push(studio)
+          }
+        })
+        res.render('admin/listMovie', {datas: hasil})
+      })
+      .catch(err => {
+        console.log(err)
+        res.send(err)
+      })
+  }
+  
 }
 
 module.exports = Controller

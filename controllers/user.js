@@ -42,7 +42,7 @@ class Controller {
         password: req.body.password
       }
     ).then(() => {
-      res.redirect('/')
+      res.redirect('/user/login')
     }).catch(err => {
       console.log(err)
       res.render('register', {err: err.message})
@@ -143,38 +143,17 @@ class Controller {
       }
     })
     .then(update => {
-      return Studio.find({
+      return StudioSeat.findAll({
+        where: {userId: req.params.user},
         include: [{ 
           all: true, 
           nested: true 
         }],
-        where: {id: req.params.idStudio}
-      })
-      .then(studio => {
-        return Schedule.find({
-          where: {
-            studioId: req.params.idStudio,
-            showTimeId: req.params.idJadwal
-          }
-        })
-        .then(schedule => {
-          return StudioSeat.findAll({
-            include: [{ 
-              all: true, 
-              nested: true 
-            }],
-            where: {scheduleId: schedule.id}
-          })
-          .then(seats => {
-            let idStudio = req.params.idStudio
-            let idJadwal = req.params.idJadwal
-            return {studio, seats, idStudio, idJadwal}
-          })
-        })
       })
     })
     .then(data => {
-      res.rendirect(`/user/bookSeat/${data.idStudio}/${data.idJadwal}`, {data, msg: 'Tiket berhasil dibook!'})
+      // res.redirect('/user/tickets', {datas: data})
+      res.redirect('/')
     })
     .catch(err => {
       console.log(err);

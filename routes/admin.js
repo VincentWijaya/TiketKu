@@ -6,4 +6,6 @@ const urlEncoded = express.urlencoded({extended: false})
 app.get('/addmovie', Admin.addMovieShow)
 app.post('/addMovie', urlEncoded, Admin.addMovie)
 
+app.get('/listMovie', Admin.showList)
+
 module.exports = app

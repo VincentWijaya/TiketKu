@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>TiketKu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  </head>
+  
+  <body>
+    <%- include('../header') %>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8" style="padding-top: 10px">
+                        <h2>Movie List</h2>
+                    </div>
+                </div>
+                
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+              <thead>
+                  <tr>
+                      <th>Title</th>
+                      <th>Studio</th>
+                      <th>Show Time</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <% datas.forEach( data => { %>
+                        <tr>
+                            <td><%= data.Movie.name %></td>
+                            <td><%= data.id %></td>
+                            
+                            <td>
+                              <ol>
+                                <% data.ShowTimes.forEach(show => { %>
+                                <li><%= show.time %></li>
+                                <% }) %>
+                              </ol>
+                            </td>
+                        
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </body>
+
+</html>
