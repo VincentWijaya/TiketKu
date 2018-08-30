@@ -71,7 +71,7 @@ class Controller {
         })
     })
     .then(() => {
-      res.redirect('/')
+      res.redirect('/user/movies')
     })
     .catch(err => {
       

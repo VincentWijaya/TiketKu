@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Schedule.associate = function(models) {
     // associations can be defined here
+    Schedule.belongsTo(models.ShowTime, {foreignKey: 'showTimeId'})
   };
   return Schedule;
 };

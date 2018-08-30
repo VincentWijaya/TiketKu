@@ -35,9 +35,9 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-// app.use('/', (req, res) => {
-//   res.redirect('/')
-// })
+app.use('/', (req, res) => {
+  res.redirect('/')
+})
 
 app.listen(3000, () => {
   console.log('Running on port 3000.......');

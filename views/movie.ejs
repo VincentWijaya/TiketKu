@@ -13,7 +13,7 @@
     
     <div class="container" style="padding-top: 100px">
       <% data.forEach(studio => { %>
-      <div class="list-film">
+      <div class="list-film" style="padding-left: 35%">
               <div class="data-film">
                 <div class="table-title">
                   <div class="row">
@@ -22,7 +22,7 @@
                       </div>
                   </div>
                 </div>
-                  <img src="<%= studio.Movie.urlImg %>" alt="">
+                  <img src="<%= studio.Movie.urlImg %>" class="img-responsive">
                   <div class="action-film">
                     Jadwal: 
                     <% studio.ShowTimes.forEach(data => { %>

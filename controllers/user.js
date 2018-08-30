@@ -97,7 +97,8 @@ class Controller {
             all: true, 
             nested: true 
           }],
-          where: {scheduleId: schedule.id}
+          where: {scheduleId: schedule.id},
+          order: [['seatId', 'ASC']]
         })
         .then(seats => {
           let jam = req.params.idJadwal
@@ -114,36 +115,35 @@ class Controller {
     })
   }
   
-  static bookSeat(req, res, next) {
+  static bookSeat(req, res) {
     
     return new Promise((resolve, reject) => {
-      req.body.seats.forEach((seat, index) => {
+      for (let i = 0; i < req.body.seats.length; i++) {
         StudioSeat.update(
           {
-            avail: true,
-            user: req.session.user.id
+            avail: false,
+            userId: req.session.user.id
           },
           {
             where: {
               scheduleId: req.params.idSchedule,
-              seatId: seat.seatId
+              seatId: req.body.seats[i]
             }
           }
         )
         .then(() => {
-          console.log(index);
-          if (index === seats.length - 1) {
-            resolve()
+          if (i === req.body.seats.length - 1) {
+            return resolve()
           }
         })
         .catch(err => {
-          console.log(err);
-          res.send(err)
-        })      
-      })
+          console.log(err)
+          return res.send(err)
+        }) 
+      }
     })
-    .then(() => {
-      Studio.find({
+    .then(update => {
+      return Studio.find({
         include: [{ 
           all: true, 
           nested: true 
@@ -166,16 +166,35 @@ class Controller {
             where: {scheduleId: schedule.id}
           })
           .then(seats => {
-            return {studio, seats}
+            let idStudio = req.params.idStudio
+            let idJadwal = req.params.idJadwal
+            return {studio, seats, idStudio, idJadwal}
           })
         })
       })
     })
     .then(data => {
-      res.render('bookSeat', {data, msg: 'Tiket berhasil dibook!'})
+      res.rendirect(`/user/bookSeat/${data.idStudio}/${data.idJadwal}`, {data, msg: 'Tiket berhasil dibook!'})
     })
     .catch(err => {
       console.log(err);
+      res.send(err)
+    })
+  }
+  
+  static showTickets(req, res) {
+    StudioSeat.findAll({
+      where: {userId: req.params.user},
+      include: [{ 
+        all: true, 
+        nested: true 
+      }],
+    })
+    .then(data => {
+      res.render('myTickets', {datas: data})
+    })
+    .catch(err => {
+      console.log(err)
       res.send(err)
     })
   }

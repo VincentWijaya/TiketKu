@@ -33,4 +33,14 @@ app.post('/bookSeat/:idStudio/:idJadwal/:idSchedule', function(req, res, next) {
   }
 }, urlEncoded, User.bookSeat)
 
+app.get('/tickets/:user', function(req, res, next) {
+  if (!req.session.user) {
+    res.redirect('/user/login')
+  } else if(req.session.user && req.session.user.role === 'client') {
+    next()
+  } else {
+    res.redirect('/user/login')
+  }
+}, User.showTickets)
+
 module.exports = app
