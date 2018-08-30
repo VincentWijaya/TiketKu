@@ -1,0 +1,49 @@
+v.list-film{
+   border: 1px black solid;
+   width: 270px;
+   border-radius: 5px;
+   padding: 3px;
+   margin: 10px 0 0 10px;
+   float: left;
+}
+
+div.list-film div.data-film img {
+    width: 260px;
+    height: 350px;
+    border-radius: 5px;
+}
+
+div.list-film div.data-film p:nth-child(1) {
+    font-weight: bold;
+    color: #35353B;
+    line-height: 10px;
+    padding-top: 10px;
+    padding-left: 8px;
+}
+
+div.list-film div.data-film p:nth-child(2) {
+    font-weight: normal;
+    color: grey;
+    font-size: 10px;
+    line-height: 1px;
+    margin-bottom: 40px;
+    padding-left: 8px;
+}
+
+div.list-film div.data-film a {
+    height: 40px;
+    width: 50px;
+    display: block;
+    background: dodgerblue;
+    color: #FFFFFF;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 10px;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+div.list-film div.data-film a:hover {
+    font-weight: bold;
+    opacity: 0.7;
+}

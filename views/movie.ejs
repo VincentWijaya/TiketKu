@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TiketKu</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  </head>
+  
+  <body>
+    <%- include('./header') %>
+    
+    <div class="container" style="padding-top: 100px">
+      <% data.forEach(studio => { %>
+      <div class="list-film">
+              <div class="data-film">
+                <div class="table-title">
+                  <div class="row">
+                      <div class="col-sm-8">
+                          <h3><%= studio.Movie.name %></h3>
+                      </div>
+                  </div>
+                </div>
+                  <img src="<%= studio.Movie.urlImg %>" alt="">
+                  <div class="action-film">
+                    Jadwal: 
+                    <% studio.ShowTimes.forEach(data => { %>
+                      <% if(user) { %>
+                        <a href="/user/bookSeat/<%= studio.id %>/<%= data.id %>"><%= data.time %></a>
+                      <% }else { %>
+                        <%= data.time %>
+                      <% } %>
+                    <% }) %>
+                  </div>
+              </div>
+      </div>
+      <% }) %>
+    </div>
+    
+  </body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>TiketKu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  </head>
+  
+  <body>
+    <%- include('../header') %>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row">
+                  <div class="col-sm-8">
+                      <h2>Add Movies</h2>
+                  </div>
+              </div>
+              <% if (err) { %>
+              <div class="alert alert-warning">
+                <strong>Warning!</strong> <%= err %>
+              </div>
+              <% } %>
+            </div>
+            <form action="/admin/addMovie" method="post">
+              <div class="form-group">
+                <label for="studio">Studio</label>
+                <select class="form-control" name="studio">
+                  <% studios.forEach(studio => { %>
+                  <option value="<%= studio.id %>">Studio <%= `${studio.id}` %></option>
+                  <% }) %>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="movieName">Movie Name</label>
+                <input type="text" class="form-control" id="movieName" name="movieName" required>
+              </div>
+              <div class="form-group">
+                <label for="img">URL Image</label>
+                <input type="text" class="form-control" id="img" name="urlImg" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+  </body>
+
+</html>

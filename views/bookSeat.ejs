@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TiketKu</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  </head>
+  
+  <body>
+    <%- include('./header') %>
+    
+    <div class="container" style="padding-top: 100px">
+      
+      <% if(data.msg) { %>
+      <div class="alert alert-success">
+        <strong>Success!</strong> <%= msg %>
+      </div>
+      <% } %>
+      <div class="list-film">
+              <div class="data-film">
+                <div class="table-title">
+                  <div class="row">
+                      <div class="col-sm-8">
+                          <h3><%= data.studio.Movie.name %></h3>
+                      </div>
+                  </div>
+                </div>
+                  <img src="<%= data.studio.Movie.urlImg %>" alt="">
+              </div>
+      </div>
+      
+      <form action="/user/bookSeat/<%= data.studio.id %>/<%= data.jam %>/<%= data.seats[0].scheduleId %>" method="post">
+        <div class="form-group">
+          <label for="seats">Choose Seats</label>
+          <br>
+            <% data.seats.forEach(seat => { %>
+              <% if(seat.User) { %>
+              <input type="checkbox" value="" name="seats" disabled> <%= seat.Seat.name %> </option>
+              <% }else { %>
+                <input type="checkbox" value="<%= seat.seatId %>" name="seats"> <%= seat.Seat.name %> </option>
+              <% } %>
+            <% }) %>
+        </div>
+        <button type="submit" class="btn btn-primary" value="submit">Book Now</button>
+      </form>
+      
+    </div>
+    
+  </body>
+
+</html>
