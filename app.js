@@ -42,5 +42,5 @@ app.use('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log('Running on port ', post);
+  console.log('Running on port ', port);
 })
