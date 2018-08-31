@@ -16,7 +16,7 @@ module.exports = {
     let data = [
       {
         name: "Vincent Wijaya",
-        email "vincent@gmail.com",
+        email: "vincent@gmail.com",
         password: "278b32f01399ea5a422a44de45fd23960492b0917714a053a4f91d482524568f",
         role: "admin",
         createdAt: new Date,
