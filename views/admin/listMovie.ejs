@@ -26,6 +26,7 @@
                       <th>Title</th>
                       <th>Studio</th>
                       <th>Show Time</th>
+                      <th>Actions</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -41,7 +42,23 @@
                                 <% }) %>
                               </ol>
                             </td>
-                        
+                            
+                            <td>
+                              <a href="/admin/editMovie/<%= data.id %>" title="Edit" data-toggle="tooltip">
+                                  <i class="fas fa-edit"></i>
+                              </a>
+                              
+                              <script type="text/javascript">
+                                function confirmDelete() {
+                                  return confirm("Are you sure to delete this movie?")
+                                }
+                              </script>
+                              
+                              <a href="/admin/deleteMovie/<%= data.id %>" class="delete" onclick="return confirmDelete()" title="Delete" data-toggle="tooltip">
+                                  <i class="fas fa-trash-alt"></i>
+                              </a>
+                            </td>
+                            
                         </tr>
                     <% }) %>
                 </tbody>

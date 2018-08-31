@@ -59,7 +59,10 @@ class Controller {
       include: [{ 
         all: true, 
         nested: true 
-      }]
+      }],
+      order: [
+        ['id', 'ASC']
+      ]
     })
     .then(data => {
       let hasil = []
@@ -144,7 +147,7 @@ class Controller {
     })
     .then(update => {
       return StudioSeat.findAll({
-        where: {userId: req.params.user},
+        where: {userId: req.params.id},
         include: [{ 
           all: true, 
           nested: true 
@@ -152,8 +155,7 @@ class Controller {
       })
     })
     .then(data => {
-      // res.redirect('/user/tickets', {datas: data})
-      res.redirect('/')
+      res.redirect(`/user/tickets/${req.session.user.id}`)
     })
     .catch(err => {
       console.log(err);
@@ -163,11 +165,11 @@ class Controller {
   
   static showTickets(req, res) {
     StudioSeat.findAll({
-      where: {userId: req.params.user},
       include: [{ 
         all: true, 
         nested: true 
       }],
+      where: {userId: req.params.id }
     })
     .then(data => {
       res.render('myTickets', {datas: data})

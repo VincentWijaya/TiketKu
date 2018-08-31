@@ -32,7 +32,11 @@
                   <tbody>
                     <% datas.forEach( data => { %>
                         <tr>
-                            <td><%= data.Schedule.ShowTime.Studios[0].Movie.name %></td>
+                            <% data.Schedule.ShowTime.Studios.forEach(studio => { %>
+                              <% if(data.Schedule.studioId === studio.id) { %>
+                                <td><%= studio.Movie.name %></td>
+                              <% } %>
+                            <% }) %>
                             <td><%= data.Schedule.studioId %></td>
                             <td><%= data.Schedule.ShowTime.time %></td>
                             <td><%= data.Seat.name %></td>

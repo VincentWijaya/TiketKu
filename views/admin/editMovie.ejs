@@ -25,23 +25,19 @@
               <% } %>
             </div>
             
-            <form action="/admin/addMovie" method="post">
+            <form action="/admin/editMovie/<%= data.id %>" method="post">
               <div class="form-group">
                 <label for="studio">Studio</label>
-                <select class="form-control" name="studio">
-                  <% studios.forEach(studio => { %>
-                  <option value="<%= studio.id %>">Studio <%= `${studio.id}` %></option>
-                  <% }) %>
-                </select>
+                <input type="text" class="form-control" id="studio" value="<%= data.id %>" disabled>
               </div>
               
               <div class="form-group">
                 <label for="movieName">Movie Name</label>
-                <input type="text" class="form-control" id="movieName" name="movieName" required>
+                <input type="text" class="form-control" id="movieName" name="movieName" required value="<%= data.Movie.name %>">
               </div>
               <div class="form-group">
                 <label for="img">URL Image</label>
-                <input type="text" class="form-control" id="img" name="urlImg" required>
+                <input type="text" class="form-control" id="img" name="urlImg" required value="<%= data.Movie.urlImg %>">
               </div>
               
               <button type="submit" class="btn btn-primary">Submit</button>
