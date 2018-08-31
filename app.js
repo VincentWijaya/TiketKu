@@ -5,6 +5,8 @@ var session = require('express-session')
 const routeUser = require('./routes/user')
 const routeAdmin = require('./routes/admin')
 
+const port = proccess.env.PORT || 4000
+
 app.set('view engine', 'ejs')
 
 app.use(express.static('./views'))
@@ -35,10 +37,10 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-// app.use('/', (req, res) => {
-//   res.redirect('/')
-// })
+app.use('/', (req, res) => {
+  res.redirect('/')
+})
 
-app.listen(3000, () => {
-  console.log('Running on port 3000.......');
+app.listen(port, () => {
+  console.log(`Running on port ${port}.......`);
 })

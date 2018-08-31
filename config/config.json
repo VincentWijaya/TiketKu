@@ -5,5 +5,12 @@
     "database": "tiketku",
     "host": "127.0.0.1",
     "dialect": "postgres"
+  },
+  "production": {
+    "username": "pzskjrcbozjtkh",
+    "password": "fabcf46f0c8c083f0b98c535aa0e39813d4bee9abf6cd0baef66a406e0981f71",
+    "database": "dc272ikrls4ce0",
+    "host": "ec2-54-221-237-246.compute-1.amazonaws.com",
+    "dialect": "postgres"
   }
 }
