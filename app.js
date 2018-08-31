@@ -22,6 +22,10 @@ app.use(function(req, res, next){
   next();
 });
 
+app.get('/', (req, res) => {
+  res.render('index')
+})
+
 app.use('/user', routeUser)
 app.use('/admin', function(req, res, next) {
   if (!req.session.user) {
@@ -32,10 +36,6 @@ app.use('/admin', function(req, res, next) {
     res.redirect('/user/login')
   }
 },routeAdmin)
-
-app.get('/', (req, res) => {
-  res.render('index')
-})
 
 app.use('/', (req, res) => {
   res.redirect('/')
