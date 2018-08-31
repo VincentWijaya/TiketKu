@@ -5,7 +5,7 @@ var session = require('express-session')
 const routeUser = require('./routes/user')
 const routeAdmin = require('./routes/admin')
 
-const port = process.env.port || 3000
+const port = process.env.PORT || 3000
 
 app.set('view engine', 'ejs')
 
